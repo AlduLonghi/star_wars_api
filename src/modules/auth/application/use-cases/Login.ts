@@ -1,18 +1,17 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from '../../users/application/use-cases/users.service';
 import * as bcrypt from 'bcrypt';
-import { LoginPort } from '../../entities/ports/auth.ports';
+import { GetUserByEmailUseCase } from 'src/modules/users/application/use-cases/GetUserByEmail';
 
 @Injectable()
-export class LoginUseCase implements LoginPort {
+export class LoginUseCase {
   constructor(
-    private readonly usersService: UsersService,
+    private readonly getUserByEmail: GetUserByEmailUseCase,
     private readonly jwtService: JwtService,
   ) {}
 
   async execute(email: string, password: string): Promise<{ accessToken: string }> {
-    const user = await this.usersService.findByEmail(email);
+    const user = await this.getUserByEmail.execute(email);
     if (!user || !(await bcrypt.compare(password, user.password))) {
       throw new UnauthorizedException('Invalid credentials');
     }

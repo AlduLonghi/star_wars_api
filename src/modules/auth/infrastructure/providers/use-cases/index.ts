@@ -1,15 +1,14 @@
 import { Provider } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { LoginUseCase } from 'src/modules/auth/application/use-cases/Login';
-import { RegisterUseCase } from 'src/modules/auth/application/use-cases/Register';
-import { LoginPort, RegisterPort } from 'src/modules/auth/entities';
+import { GetUserByEmailUseCase } from 'src/modules/users/application/use-cases/GetUserByEmail';
 
 export const authProviders: Provider[] = [
   {
-    provide: LoginPort,
-    useFactory: (usersService: UsersService, jwtService: JwtService) => {
-      return new LoginUseCase(usersService, jwtService);  // Inyecta UsersService y JwtService en LoginUseCase
+    provide: LoginUseCase,
+    useFactory: (getUserByEmail: GetUserByEmailUseCase, jwtService: JwtService) => {
+      return new LoginUseCase(getUserByEmail, jwtService); 
     },
-    inject: [UsersService, JwtService], // Inyectamos UsersService y JwtService
+    inject: [GetUserByEmailUseCase, JwtService], 
   },
 ];

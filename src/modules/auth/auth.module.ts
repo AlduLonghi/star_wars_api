@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UsersModule } from '../../users/infrastructure/users.module';
-import { JwtStrategy } from '../infrastructure/jwt.strategy';
 import { PassportModule } from '@nestjs/passport';
-import { authProviders } from '../infrastructure/providers/auth.providers';
 import { AuthResolver } from './infrastructure/interface/graphql/auth.resolver';
+import { UsersModule } from '../users/users.module';
+import { authProviders } from './infrastructure/providers/use-cases';
 
 
 @Module({
@@ -22,6 +21,6 @@ import { AuthResolver } from './infrastructure/interface/graphql/auth.resolver';
     }),
     UsersModule,
   ],
-  providers: [AuthResolver, JwtStrategy, ...authProviders],
+  providers: [...authProviders, AuthResolver],
 })
 export class AuthModule {}
