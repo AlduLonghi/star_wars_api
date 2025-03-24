@@ -15,12 +15,17 @@ const mongoose_1 = require("@nestjs/mongoose");
 const path_1 = require("path");
 const default_1 = require("@apollo/server/plugin/landingPage/default");
 const auth_module_1 = require("./modules/auth/auth.module");
+const config_1 = require("@nestjs/config");
+const shared_module_1 = require("./shared/shared.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
+            }),
             mongoose_1.MongooseModule.forRoot('mongodb://admin:pass@localhost:27017'),
             graphql_1.GraphQLModule.forRoot({
                 autoSchemaFile: (0, path_1.join)(process.cwd(), 'src/schema.gql'),
@@ -29,6 +34,7 @@ exports.AppModule = AppModule = __decorate([
                 playground: false,
                 plugins: [(0, default_1.ApolloServerPluginLandingPageLocalDefault)()],
             }),
+            shared_module_1.SharedModule,
             auth_module_1.AuthModule,
             users_module_1.UsersModule,
         ],

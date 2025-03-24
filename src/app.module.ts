@@ -6,9 +6,14 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { join } from 'path';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { AuthModule } from './modules/auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
+import { SharedModule } from './shared/shared.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true, 
+    }),
      MongooseModule.forRoot('mongodb://admin:pass@localhost:27017'),
      GraphQLModule.forRoot<ApolloDriverConfig>({
         autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
@@ -17,6 +22,7 @@ import { AuthModule } from './modules/auth/auth.module';
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
+    SharedModule,
     AuthModule,
     UsersModule,
   ],

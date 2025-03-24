@@ -24,7 +24,7 @@ exports.usersProviders = [
     },
     {
         provide: GetUserByEmail_1.GetUserByEmailUseCase,
-        useFactory: (userRepository) => new UpdateUser_1.UpdateUserUseCase(userRepository),
+        useFactory: (userRepository) => new GetUserByEmail_1.GetUserByEmailUseCase(userRepository),
         inject: [user_repository_1.UserRepository],
     },
 ];

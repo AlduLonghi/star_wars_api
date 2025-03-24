@@ -9,6 +9,7 @@ import { authProviders } from './infrastructure/providers/use-cases';
 
 @Module({
   imports: [
+    UsersModule,
     ConfigModule,
     PassportModule,
     JwtModule.registerAsync({
@@ -19,7 +20,6 @@ import { authProviders } from './infrastructure/providers/use-cases';
         signOptions: { expiresIn: '1h' },
       }),
     }),
-    UsersModule,
   ],
   providers: [...authProviders, AuthResolver],
 })

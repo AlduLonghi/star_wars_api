@@ -25,7 +25,7 @@ export const usersProviders: Provider[] = [
   },
   {
     provide: GetUserByEmailUseCase,
-    useFactory: (userRepository: UserRepositoryPort) => new UpdateUserUseCase(userRepository),
+    useFactory: (userRepository: UserRepositoryPort) => new GetUserByEmailUseCase(userRepository),
     inject: [UserRepository],
   },
 ];

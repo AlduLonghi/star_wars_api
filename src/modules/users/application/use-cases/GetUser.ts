@@ -7,6 +7,7 @@ export class GetUserUseCase {
   constructor(private readonly usersRepository: UserRepositoryPort) {}
 
   async execute(userId: string): Promise<User | null> {
-    return this.usersRepository.findById(userId);
+   const user = await this.usersRepository.findById(userId);
+    return user;
   }
 }

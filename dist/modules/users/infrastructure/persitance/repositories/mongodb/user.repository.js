@@ -30,8 +30,8 @@ let UserRepository = class UserRepository {
         return this.userModel.findById(id).exec();
     }
     async findByEmail(email) {
-        console.log('llego aca');
-        return this.userModel.findOne({ email }).exec();
+        const user = this.userModel.findOne({ email }).exec();
+        return user;
     }
     async update(id, updateUser) {
         return this.userModel.findByIdAndUpdate(id, updateUser, { new: true }).exec();

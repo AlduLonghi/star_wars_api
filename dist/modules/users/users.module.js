@@ -11,18 +11,21 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const user_schema_1 = require("./infrastructure/persitance/repositories/mongodb/schemas/user.schema");
 const user_repository_1 = require("./infrastructure/persitance/repositories/mongodb/user.repository");
-const Users_resolver_1 = require("./infrastructure/interface/graphql/Users.resolver");
+const user_resolver_1 = require("./infrastructure/interface/graphql/user.resolver");
 const GetUser_1 = require("./application/use-cases/GetUser");
 const user_1 = require("./domain/entities/user");
 const providers_1 = require("./infrastructure/providers");
 const GetUserByEmail_1 = require("./application/use-cases/GetUserByEmail");
+const jwt_1 = require("@nestjs/jwt");
+const config_1 = require("@nestjs/config");
+const shared_module_1 = require("../../shared/shared.module");
 let UsersModule = class UsersModule {
 };
 exports.UsersModule = UsersModule;
 exports.UsersModule = UsersModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: user_1.User.name, schema: user_schema_1.UserSchema }])],
-        providers: [user_repository_1.UserRepository, Users_resolver_1.UsersResolver, ...providers_1.usersProviders],
+        imports: [shared_module_1.SharedModule, config_1.ConfigModule, mongoose_1.MongooseModule.forFeature([{ name: user_1.User.name, schema: user_schema_1.UserSchema }])],
+        providers: [jwt_1.JwtService, user_repository_1.UserRepository, user_resolver_1.UsersResolver, ...providers_1.usersProviders],
         exports: [GetUser_1.GetUserUseCase, GetUserByEmail_1.GetUserByEmailUseCase],
     })
 ], UsersModule);

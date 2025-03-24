@@ -13,17 +13,12 @@ exports.UserSchema = exports.User = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const user_1 = require("../../../../../domain/entities/user");
 let User = class User {
-    _id;
     email;
     password;
     role;
     name;
 };
 exports.User = User;
-__decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], User.prototype, "_id", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)

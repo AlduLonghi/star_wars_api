@@ -20,6 +20,7 @@ exports.AuthModule = AuthModule;
 exports.AuthModule = AuthModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            users_module_1.UsersModule,
             config_1.ConfigModule,
             passport_1.PassportModule,
             jwt_1.JwtModule.registerAsync({
@@ -30,7 +31,6 @@ exports.AuthModule = AuthModule = __decorate([
                     signOptions: { expiresIn: '1h' },
                 }),
             }),
-            users_module_1.UsersModule,
         ],
         providers: [...use_cases_1.authProviders, auth_resolver_1.AuthResolver],
     })

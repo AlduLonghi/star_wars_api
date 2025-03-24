@@ -19,8 +19,8 @@ const Register_1 = require("../../../application/use-cases/Register");
 const GetUser_1 = require("../../../application/use-cases/GetUser");
 const UpdateUser_1 = require("../../../application/use-cases/UpdateUser");
 const dtos_1 = require("./dtos");
-const gql_guard_1 = require("./guards/gql.guard");
-const roles_guard_1 = require("./guards/roles.guard");
+const auth_guard_1 = require("../../../../../shared/infrastructure/interface/graphql/guards/auth.guard");
+const roles_guard_1 = require("../../../../../shared/infrastructure/interface/graphql/guards/roles.guard");
 const roles_decorator_1 = require("./decorators/roles.decorator");
 let UsersResolver = class UsersResolver {
     registerUseCase;
@@ -51,7 +51,7 @@ __decorate([
 ], UsersResolver.prototype, "register", null);
 __decorate([
     (0, graphql_1.Query)(() => dtos_1.UserDto),
-    (0, common_1.UseGuards)(gql_guard_1.GqlAuthGuard, roles_guard_1.RolesGuard),
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
     (0, roles_decorator_1.Roles)('ADMIN'),
     __param(0, (0, graphql_1.Args)('id')),
     __metadata("design:type", Function),
@@ -60,7 +60,7 @@ __decorate([
 ], UsersResolver.prototype, "getUser", null);
 __decorate([
     (0, graphql_1.Mutation)(() => dtos_1.UserDto),
-    (0, common_1.UseGuards)(gql_guard_1.GqlAuthGuard, roles_guard_1.RolesGuard),
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
     (0, roles_decorator_1.Roles)('USER', 'ADMIN'),
     __param(0, (0, graphql_1.Args)('id')),
     __param(1, (0, graphql_1.Args)('updateData')),
@@ -74,4 +74,4 @@ exports.UsersResolver = UsersResolver = __decorate([
         GetUser_1.GetUserUseCase,
         UpdateUser_1.UpdateUserUseCase])
 ], UsersResolver);
-//# sourceMappingURL=Users.resolver.js.map
+//# sourceMappingURL=user.resolver.js.map

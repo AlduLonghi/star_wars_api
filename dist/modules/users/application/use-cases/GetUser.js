@@ -17,7 +17,8 @@ let GetUserUseCase = class GetUserUseCase {
         this.usersRepository = usersRepository;
     }
     async execute(userId) {
-        return this.usersRepository.findById(userId);
+        const user = await this.usersRepository.findById(userId);
+        return user;
     }
 };
 exports.GetUserUseCase = GetUserUseCase;
