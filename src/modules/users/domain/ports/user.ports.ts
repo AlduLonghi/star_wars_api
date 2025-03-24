@@ -2,7 +2,7 @@ import { User } from "../entities/user";
 
 
 export interface CreateUserPort {
-  create(user: User): Promise<User>;
+  create(user: User): Promise<User | null>;
 }
 
 export interface FindUserByIdPort {

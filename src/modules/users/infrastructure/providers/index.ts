@@ -6,7 +6,6 @@ import { UserRepositoryPort } from '../../domain/ports/user.ports';
 import { UserRepository } from '../persitance/repositories/mongodb/user.repository';
 import { GetUserByEmailUseCase } from '../../application/use-cases/GetUserByEmail';
 
-
 export const usersProviders: Provider[] = [
   {
     provide: RegisterUseCase,

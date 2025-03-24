@@ -17,6 +17,7 @@ const default_1 = require("@apollo/server/plugin/landingPage/default");
 const auth_module_1 = require("./modules/auth/auth.module");
 const config_1 = require("@nestjs/config");
 const shared_module_1 = require("./shared/shared.module");
+const movies_module_1 = require("./modules/movies/movies.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -37,6 +38,7 @@ exports.AppModule = AppModule = __decorate([
             shared_module_1.SharedModule,
             auth_module_1.AuthModule,
             users_module_1.UsersModule,
+            movies_module_1.MoviesModule
         ],
     })
 ], AppModule);

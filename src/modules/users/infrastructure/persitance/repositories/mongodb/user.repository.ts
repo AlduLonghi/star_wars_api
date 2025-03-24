@@ -10,9 +10,14 @@ export class UserRepository implements UserRepositoryPort {
     @InjectModel(User.name) private readonly userModel: Model<User>, // Inyectamos el modelo de User
   ) {}
 
-  async create(userDto: User): Promise<User> {
-    const createdUser = new this.userModel(userDto);
-    return createdUser.save();
+  async create(userDto: User): Promise<User | null> {
+    try {
+      const createdUser = new this.userModel(userDto);
+      const savedUser = await createdUser.save();
+      return savedUser;
+    } catch {
+       return null
+    }
   }
 
   async findById(id: string): Promise<User | null> {

@@ -8,7 +8,7 @@ export declare class UsersResolver {
     private readonly getUserUseCase;
     private readonly updateUserUseCase;
     constructor(registerUseCase: RegisterUseCase, getUserUseCase: GetUserUseCase, updateUserUseCase: UpdateUserUseCase);
-    register(registerData: RegisterDto): Promise<User>;
+    register(registerData: RegisterDto): Promise<User | null>;
     getUser(id: string): Promise<User | null>;
     updateUser(id: string, updateData: UpdateUserInput): Promise<User | null>;
 }

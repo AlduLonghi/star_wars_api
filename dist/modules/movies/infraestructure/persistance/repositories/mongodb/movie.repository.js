@@ -12,41 +12,54 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserRepository = void 0;
+exports.MovieRepository = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const user_1 = require("../../../../domain/entities/user");
-let UserRepository = class UserRepository {
-    userModel;
-    constructor(userModel) {
-        this.userModel = userModel;
+const movie_1 = require("../../../../domain/entities/movie");
+let MovieRepository = class MovieRepository {
+    movieModel;
+    constructor(movieModel) {
+        this.movieModel = movieModel;
     }
-    async create(userDto) {
+    async create(movie) {
         try {
-            const createdUser = new this.userModel(userDto);
-            const savedUser = await createdUser.save();
-            return savedUser;
+            const createdMovie = await this.movieModel.create(movie);
+            return createdMovie;
         }
         catch {
             return null;
         }
     }
     async findById(id) {
-        return this.userModel.findById(id).exec();
+        try {
+            return await this.movieModel.findById(id).exec();
+        }
+        catch {
+            return null;
+        }
     }
-    async findByEmail(email) {
-        const user = this.userModel.findOne({ email }).exec();
-        return user;
+    async findAll(filter = {}) {
+        try {
+            return await this.movieModel.find(filter).exec();
+        }
+        catch {
+            return null;
+        }
     }
-    async update(id, updateUser) {
-        return this.userModel.findByIdAndUpdate(id, updateUser, { new: true }).exec();
+    async update(id, movie) {
+        try {
+            return await this.movieModel.findByIdAndUpdate(id, movie, { new: true }).exec();
+        }
+        catch {
+            return null;
+        }
     }
 };
-exports.UserRepository = UserRepository;
-exports.UserRepository = UserRepository = __decorate([
+exports.MovieRepository = MovieRepository;
+exports.MovieRepository = MovieRepository = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(user_1.User.name)),
+    __param(0, (0, mongoose_1.InjectModel)(movie_1.Movie.name)),
     __metadata("design:paramtypes", [mongoose_2.Model])
-], UserRepository);
-//# sourceMappingURL=user.repository.js.map
+], MovieRepository);
+//# sourceMappingURL=movie.repository.js.map

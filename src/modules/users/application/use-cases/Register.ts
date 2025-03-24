@@ -7,7 +7,7 @@ import { UserRepositoryPort } from '../../domain/ports/user.ports';
 export class RegisterUseCase {
   constructor(private readonly usersRepository: UserRepositoryPort) {}
 
-  async execute(registerDto: User): Promise<User> {
+  async execute(registerDto: User): Promise<User | null> {
     const hashedPassword = await bcrypt.hash(registerDto.password, 10);
     return this.usersRepository.create({ ...registerDto, password: hashedPassword });
   }
