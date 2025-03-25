@@ -1,7 +1,7 @@
 import { OnModuleInit } from '@nestjs/common';
-import { ExternalStarWarsSeeder } from './infraestructure/external/stars-wars.api';
+import { ExternalStarWarsService } from './infraestructure/external/external-stars-wars.service';
 export declare class MoviesModule implements OnModuleInit {
     private readonly movieService;
-    constructor(movieService: ExternalStarWarsSeeder);
+    constructor(movieService: ExternalStarWarsService);
     onModuleInit(): Promise<void>;
 }

@@ -12,14 +12,15 @@ const jwt_1 = require("@nestjs/jwt");
 const config_1 = require("@nestjs/config");
 const auth_guard_1 = require("./infrastructure/interface/graphql/guards/auth.guard");
 const roles_guard_1 = require("./infrastructure/interface/graphql/guards/roles.guard");
+const roles_decorator_1 = require("./infrastructure/interface/graphql/decorators/roles.decorator");
 let SharedModule = class SharedModule {
 };
 exports.SharedModule = SharedModule;
 exports.SharedModule = SharedModule = __decorate([
     (0, common_1.Module)({
         imports: [config_1.ConfigModule],
-        providers: [jwt_1.JwtService, auth_guard_1.AuthGuard, roles_guard_1.RolesGuard],
-        exports: [auth_guard_1.AuthGuard, roles_guard_1.RolesGuard],
+        providers: [jwt_1.JwtService, auth_guard_1.AuthGuard, roles_guard_1.RolesGuard, roles_decorator_1.Roles],
+        exports: [auth_guard_1.AuthGuard, roles_guard_1.RolesGuard, roles_decorator_1.Roles],
     })
 ], SharedModule);
 //# sourceMappingURL=shared.module.js.map

@@ -37,15 +37,15 @@ __decorate([
     __metadata("design:type", Number)
 ], Movie.prototype, "episode_id", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
 ], Movie.prototype, "opening_crawl", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
 ], Movie.prototype, "director", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
 ], Movie.prototype, "producer", void 0);
 __decorate([

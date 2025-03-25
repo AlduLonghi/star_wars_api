@@ -16,9 +16,11 @@ const config_1 = require("@nestjs/config");
 const shared_module_1 = require("../../shared/shared.module");
 const movie_1 = require("./domain/entities/movie");
 const movie_schema_1 = require("./infraestructure/persistance/repositories/mongodb/schema/movie.schema");
-const stars_wars_api_1 = require("./infraestructure/external/stars-wars.api");
-const external_1 = require("./infraestructure/providers/external");
+const external_stars_wars_service_1 = require("./infraestructure/external/external-stars-wars.service");
+const providers_1 = require("./infraestructure/providers");
 const movie_repository_1 = require("./infraestructure/persistance/repositories/mongodb/movie.repository");
+const movie_resolver_1 = require("./infraestructure/interface/graphql/movie.resolver");
+const jwt_1 = require("@nestjs/jwt");
 let MoviesModule = class MoviesModule {
     movieService;
     constructor(movieService) {
@@ -32,9 +34,9 @@ exports.MoviesModule = MoviesModule;
 exports.MoviesModule = MoviesModule = __decorate([
     (0, common_1.Module)({
         imports: [shared_module_1.SharedModule, config_1.ConfigModule, mongoose_1.MongooseModule.forFeature([{ name: movie_1.Movie.name, schema: movie_schema_1.MovieSchema }])],
-        providers: [...external_1.externalStarWarsSeederProvider, movie_repository_1.MovieRepository],
-        exports: [stars_wars_api_1.ExternalStarWarsSeeder],
+        providers: [jwt_1.JwtService, ...providers_1.providers, movie_repository_1.MovieRepository, movie_resolver_1.MovieResolver],
+        exports: [external_stars_wars_service_1.ExternalStarWarsService],
     }),
-    __metadata("design:paramtypes", [stars_wars_api_1.ExternalStarWarsSeeder])
+    __metadata("design:paramtypes", [external_stars_wars_service_1.ExternalStarWarsService])
 ], MoviesModule);
 //# sourceMappingURL=movies.module.js.map

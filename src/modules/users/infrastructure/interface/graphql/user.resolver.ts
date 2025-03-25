@@ -6,8 +6,8 @@ import { UpdateUserUseCase } from 'src/modules/users/application/use-cases/Updat
 import { RegisterDto, UpdateUserInput, UserDto } from 'src/modules/users/infrastructure/interface/graphql/dtos';
 import { AuthGuard } from '../../../../../shared/infrastructure/interface/graphql/guards/auth.guard';
 import { RolesGuard } from '../../../../../shared/infrastructure/interface/graphql/guards/roles.guard';
-import { Roles } from './decorators/roles.decorator';
 import { User } from 'src/modules/users/domain/entities/user';
+import { Roles } from '../../../../../shared/infrastructure/interface/graphql/decorators/roles.decorator';
 
 @Resolver()
 export class UsersResolver {
@@ -24,14 +24,14 @@ export class UsersResolver {
 
   @Query(() => UserDto)
   @UseGuards(AuthGuard, RolesGuard)
-  @Roles('ADMIN')
+  @Roles.setRoles('ADMIN')
   async getUser(@Args('id') id: string) {
     return this.getUserUseCase.execute(id);
   }
 
   @Mutation(() => UserDto)
   @UseGuards(AuthGuard, RolesGuard)
-  @Roles('USER', 'ADMIN')
+  @Roles.setRoles('USER', 'ADMIN')
   async updateUser(@Args('id') id: string, @Args('updateData') updateData: UpdateUserInput) {
     return this.updateUserUseCase.execute(id, updateData);
   }

@@ -33,15 +33,17 @@ let MovieRepository = class MovieRepository {
     }
     async findById(id) {
         try {
-            return await this.movieModel.findById(id).exec();
+            const result = await this.movieModel.findById(id).exec();
+            return result;
         }
         catch {
             return null;
         }
     }
-    async findAll(filter = {}) {
+    async findAll(filter) {
         try {
-            return await this.movieModel.find(filter).exec();
+            const result = await this.movieModel.find(filter ? filter : {}).exec();
+            return result;
         }
         catch {
             return null;

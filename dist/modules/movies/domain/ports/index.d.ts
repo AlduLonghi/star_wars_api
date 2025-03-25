@@ -3,7 +3,7 @@ export interface CreateMoviePort {
     create(movie: Movie): Promise<Movie | null>;
 }
 export interface FindAllPort {
-    findAll(filter: Partial<Movie>): Promise<Movie[] | null>;
+    findAll(filter?: Partial<Movie>): Promise<Movie[] | null>;
 }
 export interface FindMovieByNamePort {
     findById(id: string): Promise<Movie | null>;

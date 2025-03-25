@@ -5,7 +5,7 @@ export interface CreateMoviePort {
 }
 
 export interface FindAllPort {
-  findAll(filter: Partial<Movie>): Promise<Movie[] | null>;
+  findAll(filter?: Partial<Movie>): Promise<Movie[] | null>;
 }
 
 export interface FindMovieByNamePort {

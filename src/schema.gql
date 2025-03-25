@@ -11,13 +11,69 @@ type LoginResponse {
   accessToken: String!
 }
 
+input MovieInput {
+  characters: [String]
+  created: String!
+  director: String!
+  edited: String!
+  episode_id: Float!
+  opening_crawl: String!
+  planets: [String]
+  producer: String!
+  release_date: String!
+  species: [String]
+  starships: [String]
+  title: String!
+  url: String!
+  vehicles: [String]
+}
+
+type MovieOutput {
+  _id: ID!
+  characters: [String!]!
+  created: String!
+  director: String!
+  edited: String!
+  episode_id: Float!
+  opening_crawl: String!
+  planets: [String!]!
+  producer: String!
+  release_date: String!
+  species: [String!]!
+  starships: [String!]!
+  title: String!
+  url: String!
+  vehicles: [String!]!
+}
+
+input MovieUpdateInput {
+  characters: [String]
+  created: String
+  director: String
+  edited: String
+  episode_id: Float
+  opening_crawl: String
+  planets: [String]
+  producer: String
+  release_date: String
+  species: [String]
+  starships: [String]
+  title: String
+  url: String
+  vehicles: [String]
+}
+
 type Mutation {
+  createMovie(movie: MovieInput!): MovieOutput
   login(input: LoginInput!): LoginResponse!
   register(registerData: RegisterDto!): UserDto!
+  updateMovie(id: String!, movie: MovieUpdateInput!): MovieOutput
   updateUser(id: String!, updateData: UpdateUserInput!): UserDto!
 }
 
 type Query {
+  getMovieByTitle(title: String!): MovieOutput
+  getMovies: [MovieOutput!]
   getUser(id: String!): UserDto!
 }
 

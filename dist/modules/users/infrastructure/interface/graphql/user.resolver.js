@@ -21,7 +21,7 @@ const UpdateUser_1 = require("../../../application/use-cases/UpdateUser");
 const dtos_1 = require("./dtos");
 const auth_guard_1 = require("../../../../../shared/infrastructure/interface/graphql/guards/auth.guard");
 const roles_guard_1 = require("../../../../../shared/infrastructure/interface/graphql/guards/roles.guard");
-const roles_decorator_1 = require("./decorators/roles.decorator");
+const roles_decorator_1 = require("../../../../../shared/infrastructure/interface/graphql/decorators/roles.decorator");
 let UsersResolver = class UsersResolver {
     registerUseCase;
     getUserUseCase;
@@ -52,7 +52,7 @@ __decorate([
 __decorate([
     (0, graphql_1.Query)(() => dtos_1.UserDto),
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)('ADMIN'),
+    roles_decorator_1.Roles.setRoles('ADMIN'),
     __param(0, (0, graphql_1.Args)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -61,7 +61,7 @@ __decorate([
 __decorate([
     (0, graphql_1.Mutation)(() => dtos_1.UserDto),
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_decorator_1.Roles)('USER', 'ADMIN'),
+    roles_decorator_1.Roles.setRoles('USER', 'ADMIN'),
     __param(0, (0, graphql_1.Args)('id')),
     __param(1, (0, graphql_1.Args)('updateData')),
     __metadata("design:type", Function),

@@ -8,14 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var ExternalStarWarsSeeder_1;
+var ExternalStarWarsService_1;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ExternalStarWarsSeeder = void 0;
+exports.ExternalStarWarsService = void 0;
 const common_1 = require("@nestjs/common");
 const axios_1 = require("axios");
-let ExternalStarWarsSeeder = ExternalStarWarsSeeder_1 = class ExternalStarWarsSeeder {
+let ExternalStarWarsService = ExternalStarWarsService_1 = class ExternalStarWarsService {
     movieRepository;
-    logger = new common_1.Logger(ExternalStarWarsSeeder_1.name);
+    logger = new common_1.Logger(ExternalStarWarsService_1.name);
     starWarsApiUrl = 'https://swapi.dev/api/films/';
     SEED_INTERVAL = 5 * 60 * 1000;
     seedInterval;
@@ -35,7 +35,8 @@ let ExternalStarWarsSeeder = ExternalStarWarsSeeder_1 = class ExternalStarWarsSe
     async saveMoviesToDatabase(movies) {
         try {
             for (const movie of movies) {
-                const existingMovie = await this.movieRepository.findAll({ episode_id: movie.episode_id })[0];
+                const existingMovies = await this.movieRepository.findAll({ episode_id: movie.episode_id });
+                const existingMovie = existingMovies && existingMovies[0];
                 if (!existingMovie) {
                     const movieDoc = {
                         title: movie.title,
@@ -81,9 +82,9 @@ let ExternalStarWarsSeeder = ExternalStarWarsSeeder_1 = class ExternalStarWarsSe
         }
     }
 };
-exports.ExternalStarWarsSeeder = ExternalStarWarsSeeder;
-exports.ExternalStarWarsSeeder = ExternalStarWarsSeeder = ExternalStarWarsSeeder_1 = __decorate([
+exports.ExternalStarWarsService = ExternalStarWarsService;
+exports.ExternalStarWarsService = ExternalStarWarsService = ExternalStarWarsService_1 = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [Object])
-], ExternalStarWarsSeeder);
-//# sourceMappingURL=stars-wars.api.js.map
+], ExternalStarWarsService);
+//# sourceMappingURL=external-stars-wars.service.js.map

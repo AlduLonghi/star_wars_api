@@ -4,8 +4,8 @@ import axios from 'axios';
 import { MovieRepositoryPort } from '../../domain/ports';
 
 @Injectable()
-export class ExternalStarWarsSeeder implements OnModuleDestroy {
-  private readonly logger = new Logger(ExternalStarWarsSeeder.name);
+export class ExternalStarWarsService implements OnModuleDestroy {
+  private readonly logger = new Logger(ExternalStarWarsService.name);
   private readonly starWarsApiUrl = 'https://swapi.dev/api/films/';
   private readonly SEED_INTERVAL = 5 * 60 * 1000; 
   private seedInterval: NodeJS.Timeout;
@@ -25,7 +25,9 @@ export class ExternalStarWarsSeeder implements OnModuleDestroy {
   async saveMoviesToDatabase(movies: any[]): Promise<void> {
     try {
       for (const movie of movies) {
-       const existingMovie = await this.movieRepository.findAll({ episode_id: movie.episode_id})[0];
+       const existingMovies = await this.movieRepository.findAll({ episode_id: movie.episode_id});
+
+       const existingMovie = existingMovies && existingMovies[0];
 
        if (!existingMovie) {
         const movieDoc = {

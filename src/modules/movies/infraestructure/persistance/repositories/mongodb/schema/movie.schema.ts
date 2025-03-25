@@ -11,13 +11,13 @@ export class Movie {
   @Prop({ required: true })
   episode_id: number;
 
-  @Prop()
+  @Prop({ required: true })
   opening_crawl: string;
 
-  @Prop()
+  @Prop({ required: true })
   director: string;
 
-  @Prop()
+  @Prop({ required: true })
   producer: string;
 
   @Prop({ required: true })

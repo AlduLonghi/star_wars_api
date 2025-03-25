@@ -1,6 +1,6 @@
 import { OnModuleDestroy } from '@nestjs/common';
 import { MovieRepositoryPort } from '../../domain/ports';
-export declare class ExternalStarWarsSeeder implements OnModuleDestroy {
+export declare class ExternalStarWarsService implements OnModuleDestroy {
     private readonly movieRepository;
     private readonly logger;
     private readonly starWarsApiUrl;
