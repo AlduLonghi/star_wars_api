@@ -6,7 +6,7 @@ import { User } from '../../domain/entities/user';
 export class GetUserUseCase {
   constructor(private readonly usersRepository: UserRepositoryPort) {}
 
-  async execute(userId: string): Promise<User | null> {
+  async execute(userId: string): Promise<User | Error> {
    const user = await this.usersRepository.findById(userId);
     return user;
   }

@@ -6,7 +6,7 @@ import { MovieRepositoryPort } from "../../domain/ports";
 export class UpdateMovie {
   constructor(private readonly movieRepository: MovieRepositoryPort) {}
 
-  async update(id: string, movie: Partial<Movie>): Promise<Movie | null> {
+  async update(id: string, movie: Partial<Movie>): Promise<Movie | Error> {
     return this.movieRepository.update(id, movie);
   }
 }

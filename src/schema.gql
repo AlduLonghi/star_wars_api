@@ -81,7 +81,12 @@ input RegisterDto {
   email: String!
   name: String!
   password: String!
-  role: String!
+  role: Role!
+}
+
+enum Role {
+  ADMIN
+  USER
 }
 
 input UpdateUserInput {
@@ -93,5 +98,5 @@ input UpdateUserInput {
 type UserDto {
   email: String!
   id: String!
-  role: String!
+  role: Role!
 }

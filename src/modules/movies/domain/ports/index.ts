@@ -1,19 +1,19 @@
 import { Movie } from "../entities/movie";
 
 export interface CreateMoviePort {
-  create(movie: Movie): Promise<Movie | null>;
+  create(movie: Movie): Promise<Movie | Error>;
 }
 
 export interface FindAllPort {
-  findAll(filter?: Partial<Movie>): Promise<Movie[] | null>;
+  findAll(filter?: Partial<Movie>): Promise<Movie[] | Error>;
 }
 
-export interface FindMovieByNamePort {
-  findById(id: string): Promise<Movie | null>;
+export interface FindByIdPort {
+  findById(id: string): Promise<Movie | Error>;
 }
 
 export interface UpdateMoviePort {
-  update(id: string, movie: Partial<Movie>): Promise<Movie | null>;
+  update(id: string, movie: Partial<Movie>): Promise<Movie | Error>;
 }
 
-export type MovieRepositoryPort = CreateMoviePort & FindAllPort & FindMovieByNamePort & UpdateMoviePort
+export type MovieRepositoryPort = CreateMoviePort & FindAllPort & FindByIdPort & UpdateMoviePort

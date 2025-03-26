@@ -6,7 +6,7 @@ import { MovieRepositoryPort } from "../../domain/ports";
 export class GetMovies {
   constructor(private readonly movieRepository: MovieRepositoryPort) {}
 
-  async find(): Promise<Movie[] | null> {
+  async find(): Promise<Movie[] | Error> {
     const results = this.movieRepository.findAll();
     return results;
   }

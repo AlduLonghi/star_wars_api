@@ -6,8 +6,13 @@ import { MovieRepositoryPort } from "../../domain/ports";
 export class GetMovieByTitle {
   constructor(private readonly movieRepository: MovieRepositoryPort) {}
 
-  async find(title: string): Promise<Movie | null> {
-    const results = this.movieRepository.findAll({ title });
+  async find(title: string): Promise<Movie | Error> {
+    const results = await this.movieRepository.findAll({ title });
+    
+    if (results === null) {
+      return new Error('Movie not found');
+    }
+
     return results[0];
   }
 }

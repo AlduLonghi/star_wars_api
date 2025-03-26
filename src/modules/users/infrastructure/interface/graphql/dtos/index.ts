@@ -1,5 +1,8 @@
-import { InputType, Field, ObjectType } from '@nestjs/graphql';
+import { InputType, Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { IsEmail, IsOptional, IsString, MinLength } from 'class-validator';
+import { Role } from '../../../../domain/entities/user';
+
+registerEnumType(Role, { name: 'Role' });
 
 @InputType()
 export class RegisterDto {
@@ -12,8 +15,8 @@ export class RegisterDto {
   @Field()
   password: string;
 
-  @Field()
-  role: string;
+  @Field(() => Role)
+  role: Role;
 }
 
 
@@ -25,8 +28,8 @@ export class UserDto {
   @Field()
   email: string;
 
-  @Field()
-  role: string;
+  @Field(() => Role)
+  role: Role;
 }
 
 @InputType()

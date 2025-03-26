@@ -6,7 +6,7 @@ import { User } from '../../domain/entities/user';
 export class UpdateUserUseCase {
   constructor(private readonly usersRepository: UserRepositoryPort) {}
 
-  async execute(userId: string, updateUserDto: Partial<User>): Promise<User | null> {
+  async execute(userId: string, updateUserDto: Partial<User>): Promise<User | Error > {
     return this.usersRepository.update(userId, updateUserDto);
   }
 }

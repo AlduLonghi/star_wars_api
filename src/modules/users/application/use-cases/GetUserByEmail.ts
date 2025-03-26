@@ -6,7 +6,7 @@ import { User } from '../../domain/entities/user';
 export class GetUserByEmailUseCase {
   constructor(private readonly userRepository: UserRepositoryPort) {}
 
-  async execute(email: string): Promise<User | null> {
+  async execute(email: string): Promise<User | Error> {
     return this.userRepository.findByEmail(email);
   }
 }

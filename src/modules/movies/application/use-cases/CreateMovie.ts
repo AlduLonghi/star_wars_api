@@ -6,7 +6,7 @@ import { MovieRepositoryPort } from "../../domain/ports";
 export class CreateMovie {
   constructor(private readonly movieRepository: MovieRepositoryPort) {}
 
-  async create(movie: Movie): Promise<Movie | null> {
+  async create(movie: Movie): Promise<Movie | Error> {
     return this.movieRepository.create(movie);
   }
 }
