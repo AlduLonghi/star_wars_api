@@ -14,14 +14,21 @@ Implement the necessary endpoints for user registration (sign-up) and login. Whe
 
 ### 3. 🤖 **API Endpoints:**
 
-- **User Registration Endpoint**: Allows users to register.
-- **Login Endpoint**: Allows users to log in and obtain an access token.
-- **Movies List Endpoint**: Allows users to retrieve the list of movies.
-- **Movie Details Endpoint**: Retrieves the details of a specific movie. This endpoint should be restricted to "Regular Users."
-- **Create Movie Endpoint**: Allows the creation of a new movie. This endpoint should be accessible only to "Admins."
-- **Update Movie Endpoint**: Allows updating the details of an existing movie. This endpoint should be restricted to "Admins."
-- **Delete Movie Endpoint**: Allows deleting a movie. This endpoint should be restricted to "Admins."
-- **Synchronization Endpoint or Cron Job**: Synchronizes the movie list with data from the Star Wars API. This should be accessible only to "Admins" if it's an endpoint, or set up as a cron job.
+### 📌 Features
+- **Authentication & Authorization**: User registration, login, and updates with roles (`ADMIN`, `USER`).
+- **Movie Management**: Create, retrieve, and update movies with details like director, cast, and release date.
+- **Queries & Mutations**:
+  - `login`: User authentication.
+  - `register`: Register new users.
+  - `getMovies`: Retrieve all available movies.
+  - `getMovieByTitle`: Find a movie by title.
+  - `createMovie`: Add a new movie.
+  - `updateMovie`: Modify movie details.
+  - `getUser`: Get user information by ID.
+  - `updateUser`: Update user data.
+
+- **Automated Data Sync**:  
+  - A **cron job** runs **once when the API starts** and then **every 5 minutes** to fetch the latest movie data from the **Star Wars API** and update the database.
 
 ---
 
@@ -120,11 +127,11 @@ This project uses Graphql with [Apollo](https://www.apollographql.com/docs/apoll
 
 ### 4. Let's play!
 
-- Now yo are ready to play with the different functionalities
+This GraphQL-based API allows for user and movie management, including JWT authentication. 
 
 ![get movie](https://github.com/user-attachments/assets/351726b5-8381-42b4-af84-847a8bf7ea59)
 
-[VIDEO TUTORIAL OF LOGIN](https://imagekit.io/tools/asset-public-link?detail=%7B%22name%22%3A%22how-to-get-movies.mov%22%2C%22type%22%3A%22video%2Fquicktime%22%2C%22signedurl_expire%22%3A%222028-03-25T15%3A01%3A06.342Z%22%2C%22signedUrl%22%3A%22https%3A%2F%2Fmedia-hosting.imagekit.io%2F0ca3d5d1527e40ef%2Fhow-to-get-movies.mov%3FExpires%3D1837609266%26Key-Pair-Id%3DK2ZIVPTIP2VGHC%26Signature%3DnMTxOQ54b2nsWzgUbKNTtu2GBmLfv-lCNCgKFEiRVXba-gegAa5Zi~aC6pEV~rH3i9jDXi0WcPogI7cD25410fCmEHs4JFfJAdIy3ahJQDc9UI6kAQ54NNlQdKMWmbmDcWnlA4p1d1b4lNj488FIxiWwNf3ATjMSppqExYsezKPthManjpG2KeXwbn8cmevEsJLPoJkLCnF~e9h-rpLN9nGgk3xpXvF6JhTkab9bDnfrHjI0mTZDLW-Uc9Ovm4AiTgetNiDuNm8FvIQL0TtTWh1-eEGLalLCZVIhzH7dI7o8YKW2D8JIkNHprLqFcVtcka7rAfvX8K-RIXWa2S8dgQ__%22%7D)
+[VIDEO TUTORIAL OF GET MOVIES](https://imagekit.io/tools/asset-public-link?detail=%7B%22name%22%3A%22how-to-get-movies.mov%22%2C%22type%22%3A%22video%2Fquicktime%22%2C%22signedurl_expire%22%3A%222028-03-25T15%3A01%3A06.342Z%22%2C%22signedUrl%22%3A%22https%3A%2F%2Fmedia-hosting.imagekit.io%2F0ca3d5d1527e40ef%2Fhow-to-get-movies.mov%3FExpires%3D1837609266%26Key-Pair-Id%3DK2ZIVPTIP2VGHC%26Signature%3DnMTxOQ54b2nsWzgUbKNTtu2GBmLfv-lCNCgKFEiRVXba-gegAa5Zi~aC6pEV~rH3i9jDXi0WcPogI7cD25410fCmEHs4JFfJAdIy3ahJQDc9UI6kAQ54NNlQdKMWmbmDcWnlA4p1d1b4lNj488FIxiWwNf3ATjMSppqExYsezKPthManjpG2KeXwbn8cmevEsJLPoJkLCnF~e9h-rpLN9nGgk3xpXvF6JhTkab9bDnfrHjI0mTZDLW-Uc9Ovm4AiTgetNiDuNm8FvIQL0TtTWh1-eEGLalLCZVIhzH7dI7o8YKW2D8JIkNHprLqFcVtcka7rAfvX8K-RIXWa2S8dgQ__%22%7D)
 
 
 
