@@ -63,7 +63,7 @@ cd <project_folder>
 To install all the dependencies required for the project, run:
 
 ```bash
-npm run install
+npm install
 ```
 
 ### 5. Install and up MongoDB using Docker
